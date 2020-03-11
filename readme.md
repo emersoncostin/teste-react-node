@@ -52,7 +52,7 @@ Neste teste você precisa criar uma ferramenta de upload de arquivos, utilizando
 
 1. Utilize Redux para fazer a comunicação entre Frontend e Backend.
 
-2. Crie uma validação do arquivo inserido, caso o arquivo contenha mais 5bm, exibir alerta para usuário.
+2. Crie uma validação do arquivo inserido, caso o arquivo contenha mais 5mb, exibir alerta para usuário.
 
 ## 🎨 Layout
 

@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img alt="mentores" title="mentores" src="https://d26lpennugtm8s.cloudfront.net/partners/nube_logos/logo-mentores-transparente.png" width="300px" />
+  <img alt="mentores" title="mentores" src="https://d26lpennugtm8s.cloudfront.net/partners/nube_logos/logo-mentores-transparente.png" width="150px" />
 </h1>
 
 <h3 align="center">
@@ -12,13 +12,12 @@
 
 <p>Este teste é para avaliarmos seu conhecimento em Node e ReactJS, por isto siga a risca o enunciado a baixo</p>
 
-<blockquote align="center">“Após finalizar o teste, crie uma Pull Request para que possamos avaliar seu teste”!</blockquote>
+<blockquote align="center">“A sinceridade é super importante, esperamos que você realize o teste e não pessa para outra pessoa”!</blockquote>
 
 <p align="center">
   <a href="#rocket-sobre-o-desafio">Sobre o teste</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#layout">Layout</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-entrega">Entrega</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#memo-licença">Licença</a>
 </p>
 
 ## 🚀 Sobre o teste

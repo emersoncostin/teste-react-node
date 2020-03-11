@@ -12,7 +12,7 @@
 
 <p>Este teste é para avaliarmos seu conhecimento em Node e ReactJS, por isto siga a risca o enunciado a baixo</p>
 
-<blockquote align="center">“A sinceridade é super importante, esperamos que você realize o teste e não pessa para outra pessoa”!</blockquote>
+<blockquote align="center">“A sinceridade é super importante, esperamos que você realize o teste sozinho!”!</blockquote>
 
 <p align="center">
   <a href="#rocket-sobre-o-desafio">Sobre o teste</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;

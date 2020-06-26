@@ -60,4 +60,4 @@ O Layout é por sua conta, mas gostariamos que você utiliza-se o <a href="https
 
 ## 📅 Entrega
 
-Ao finalizar o teste, crie um Pull Request para o repositório em questão e mencione **@MatheusKindrazki**;
+Ao finalizar o teste, crie um Pull Request para o repositório em questão e envie um e-mail confirmando a conclusão;

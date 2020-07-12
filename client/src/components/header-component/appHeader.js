@@ -1,9 +1,15 @@
 import React from 'react';
-import { Grommet, Box } from 'grommet';
+import { Grommet, Box, Heading, Tabs, Tab, Menu } from 'grommet';
 
 export class AppHeader extends React.Component {
 
+    handleClick = (e) => {
+        console.log(e)
+    }
+
     render(){
+        let mentores = "</Mentores>"
+        const { handleMenu } = this.props
         return(
             <Box
                 tag='header'
@@ -14,8 +20,19 @@ export class AppHeader extends React.Component {
                 pad={{ left: 'medium', right: 'small', vertical: 'small' }}
                 elevation='medium'
                 style={{ zIndex: '1' }}
-                {...this.props}
-            />
+                
+            >
+                <Heading level='3' margin='none'>Hiring test {mentores}</Heading>
+                <Menu
+                label="Menu"
+                items={[
+                    { label: 'Upload File', onClick: () => handleMenu("upload") },
+                    { label: 'List Files', onClick: () => handleMenu("list") },
+                ]}
+                />
+
+                <right> Desenvolvidor por: <a target="_blank" href="https://github.com/emersoncostin/">Emerson Costin</a> </right>     
+            </Box>
         );
     }
     

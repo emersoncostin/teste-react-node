@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Button} from 'grommet'
+import {Button, Text, Box} from 'grommet'
 import axios from 'axios';
 
 export class DragNDrop extends Component {
@@ -10,7 +10,8 @@ export class DragNDrop extends Component {
     fileName: "",
     dragCounter: 0,
     dropped: false,
-    selectedFile: ""
+    selectedFile: "",
+    uploaded: false
   }
 
   handleDrag = (e) => {
@@ -40,10 +41,11 @@ export class DragNDrop extends Component {
     console.log(e.dataTransfer.files)
     if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
         if(e.dataTransfer.files[0].size > 5242880){
+            this.setState({uploaded: false})
             let file = [{name: "Erro: Arquivo maior que 5MB", size: 0, error: true}];
             this.props.handleDrop(file);
         }else{
-            this.setState({dropped: true})
+            this.setState({dropped: true, uploaded: false})
             this.setState({ selectedFile: e.dataTransfer.files[0] })
             this.props.handleDrop(e.dataTransfer.files)
             e.dataTransfer.clearData()
@@ -60,7 +62,11 @@ export class DragNDrop extends Component {
     axios.post("http://localhost:9000/upload", data, { // receive two parameter endpoint url ,form data 
     })
     .then(res => { // then print response status
-    console.log(res.statusText)
+        console.log(res.statusText)
+        this.setState({
+            dropped: false,
+            uploaded: true
+        })
     })
 
   }
@@ -121,7 +127,14 @@ export class DragNDrop extends Component {
         {this.state.dropped && 
 
             <Button label="UPLOAD FILE" fill="horizontal" color="control" primary hoverIndicator margin={{"top":"small"}}  onClick={this.handleUpload} />
-            
+
+        }
+        {this.state.uploaded &&
+
+            <Box fill="horizontal" margin={{"top":"small"}}>
+                <Text alignSelf="center" color="green"> Seu arquivo foi enviado com sucesso </Text>
+            </Box>
+
         }
       </div>
     )

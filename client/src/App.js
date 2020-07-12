@@ -1,7 +1,8 @@
 import React from 'react';
-import { Grommet, Heading, Box } from 'grommet';
+import { Grommet, Heading, Box, Tabs, Tab } from 'grommet';
 import { AppHeader } from './components/header-component/appHeader'
 import { DragNDrop } from './components/dnd-component/dragndrop'
+import { ListFiles } from './components/list-component/listFiles'
 
 const theme = {
   global: {
@@ -17,7 +18,14 @@ class App extends React.Component {
 
   constructor(props){
     super(props);
-    this.state = { apiResponse : "", selectedFile: "", fileName: "Arraste seu arquivo aqui!", fileSize: "", statusColor: "background-back", textColor: "grey" };
+    this.state = {  apiResponse : "", 
+                    selectedFile: "", 
+                    fileName: "Arraste seu arquivo aqui!", 
+                    fileSize: "", 
+                    statusColor: "background-back", 
+                    textColor: "grey",
+                    showing: "upload"
+                  };
   }
 
   handleDrop = (file) => {
@@ -47,17 +55,21 @@ class App extends React.Component {
 
   }
 
+  handleMenu = option => {
+
+    this.setState({showing: option})
+
+  }
+
   render(){
-    let mentores = "</Mentores>"
+    
       return(
         <Grommet theme={theme}>
          
-          <AppHeader> 
-            <Heading level='3' margin='none'>Hiring test {mentores}</Heading>
-            <right> Desenvolvidor por: <a target="_blank" href="https://github.com/emersoncostin/">Emerson Costin</a> </right> 
-          </AppHeader>
+          <AppHeader handleMenu={this.handleMenu} /> 
 
-          <Box style={{ "height": "80vh"}} fill="vertical" overflow="auto" align="center" flex="grow" justify="center">
+
+          <Box style={this.state.showing == 'upload' ? { "display": "flex", "height": "90vh" } : { "display": "none" } } fill="vertical" overflow="auto" align="center" flex="grow" justify="center" >
            
               <DragNDrop handleDrop={this.handleDrop}>
 
@@ -72,8 +84,7 @@ class App extends React.Component {
             
           </Box>
 
-
-
+          <ListFiles visibility={this.state.showing == 'list' ? { "display": "flex", "height": "90vh" } : { "display": "none" }} />
 
         </Grommet>
       );

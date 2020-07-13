@@ -25,10 +25,12 @@ class App extends React.Component {
                     fileSize: "", 
                     statusColor: "background-back", 
                     textColor: "grey",
-                    showing: "upload"
+                    showing: "upload",
+                    filesList: []
                   };
   }
 
+  //Converter o tamanho de Bytes para KB e MB
   handleDrop = (file) => {
    
     this.setState({fileName: file[0].name })
@@ -59,6 +61,38 @@ class App extends React.Component {
   handleMenu = option => {
 
     this.setState({showing: option})
+    
+    //Se renderizar a lista fazer o fetch dos arquivos no banco de dados
+    if(option == "list"){
+
+      fetch('http://localhost:9000/listFiles')
+      .then((response) => response.json())
+      .then((data) => {
+          data.map(e => {
+
+              let size = 0
+              let sizeType = "";
+              if(e.size < 1000){
+                  sizeType = "Bytes";
+                  size = e.size;
+                }else if(e.size < 1000000){
+                  sizeType = "KB";
+                  size = e.size / 1000;
+                }else{
+                  sizeType = "MB";
+                  size = e.size / 1000000;
+                }
+                e.size = Math.round(size) + sizeType
+                let dateObject = new Date(e.uploadDate);
+                let humanDateFormat = dateObject.toLocaleString("pt-BR")
+                e.uploadDate = humanDateFormat
+          });
+
+          this.setState({filesList: data})
+      });
+
+    }
+
 
   }
 
@@ -85,7 +119,7 @@ class App extends React.Component {
             
           </Box>
 
-          <ListFiles visibility={this.state.showing == 'list' ? { "display": "flex", "height": "90vh" } : { "display": "none" }} />
+          <ListFiles fileslist={this.state.filesList} visibility={this.state.showing == 'list' ? { "display": "flex", "height": "90vh" } : { "display": "none" }} />
 
         </Grommet>
       );

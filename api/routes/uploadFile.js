@@ -23,6 +23,7 @@ router.post('/', function (req, res, next) {
         }
         console.log(req.file)
 
+        //Salvar no mongoDB Atlas
         const MongoClient = require('mongodb').MongoClient;
         const uri = "mongodb+srv://emerson:TUC7pIspkZRCbALF@costin.t3chz.mongodb.net/mentores?retryWrites=true&w=majority";
         const client = new MongoClient(uri, { useNewUrlParser: true });

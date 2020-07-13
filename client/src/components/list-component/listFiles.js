@@ -4,42 +4,12 @@ import { Grommet, Box, List, Table, TableHeader, TableRow, TableCell, Text, Tabl
 export class ListFiles extends React.Component {
 
     state = {
-        filesList: [],
         columns: ["Nome do arquivo", "Tamanho", "Data de Envio"]
     }
     handleClick = (e) => {
         console.log(e)
     }
 
-    componentDidMount(){
-        fetch('http://localhost:9000/listFiles')
-            .then((response) => response.json())
-            .then((data) => {
-                data.map(e => {
-
-                    let size = 0
-                    let sizeType = "";
-                    if(e.size < 1000){
-                        sizeType = "Bytes";
-                        size = e.size;
-                      }else if(e.size < 1000000){
-                        sizeType = "KB";
-                        size = e.size / 1000;
-                      }else{
-                        sizeType = "MB";
-                        size = e.size / 1000000;
-                      }
-                      e.size = Math.round(size) + sizeType
-                      let dateObject = new Date(e.uploadDate);
-                      let humanDateFormat = dateObject.toLocaleString("pt-BR")
-                      e.uploadDate = humanDateFormat
-                });
-
-
-
-                this.setState({filesList: data})
-            });
-      }
 
     render(){
 
@@ -60,7 +30,7 @@ export class ListFiles extends React.Component {
                     </TableRow>
                     </TableHeader>
                     <TableBody>
-                    {this.state.filesList.map(datum => (
+                    {this.props.fileslist.map(datum => (
                         <TableRow key={datum._id}>
                             
                             <TableCell scope="row">

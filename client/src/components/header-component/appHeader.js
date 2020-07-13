@@ -3,9 +3,7 @@ import { Grommet, Box, Heading, Tabs, Tab, Menu } from 'grommet';
 
 export class AppHeader extends React.Component {
 
-    handleClick = (e) => {
-        console.log(e)
-    }
+
 
     render(){
         let mentores = "</Mentores>"

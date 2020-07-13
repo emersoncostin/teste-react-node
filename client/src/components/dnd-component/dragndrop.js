@@ -41,6 +41,8 @@ export class DragNDrop extends Component {
     this.setState({dragging: false})
     console.log(e.dataTransfer.files)
     if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+        
+        //Verificar se o arquivo é maior que 5MB e impedir Upload
         if(e.dataTransfer.files[0].size > 5242880){
             this.setState({uploaded: false})
             let file = [{name: "Erro: Arquivo maior que 5MB", size: 0, error: true}];

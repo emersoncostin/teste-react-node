@@ -21,9 +21,28 @@ router.post('/', function (req, res, next) {
         } else if (err) {
             return res.status(500).json(err)
         }
+        console.log(req.file)
+
+        const MongoClient = require('mongodb').MongoClient;
+        const uri = "mongodb+srv://emerson:TUC7pIspkZRCbALF@costin.t3chz.mongodb.net/mentores?retryWrites=true&w=majority";
+        const client = new MongoClient(uri, { useNewUrlParser: true });
+        client.connect(err => {
+
+        const collection = client.db("mentores").collection("uploads");
+
+        let fileToSave = req.file;
+        fileToSave.uploadDate = Date.now();
+
+        collection.insert(fileToSave)
+        
+        client.close();
+        });
+
         return res.status(200).send(req.file)
 
     })
+
+    
     // req.file is the `avatar` file
     // req.body will hold the text fields, if there were any
   })

@@ -18,7 +18,8 @@ class App extends React.Component {
 
   constructor(props){
     super(props);
-    this.state = {  apiResponse : "", 
+    this.state = {  
+                    apiResponse : "", 
                     selectedFile: "", 
                     fileName: "Arraste seu arquivo aqui!", 
                     fileSize: "", 

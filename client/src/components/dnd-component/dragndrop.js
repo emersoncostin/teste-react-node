@@ -11,7 +11,8 @@ export class DragNDrop extends Component {
     dragCounter: 0,
     dropped: false,
     selectedFile: "",
-    uploaded: false
+    uploaded: false,
+    loading: false
   }
 
   handleDrag = (e) => {
@@ -56,7 +57,9 @@ export class DragNDrop extends Component {
   }
 
   handleUpload = () => {
-
+    this.setState({
+        loading: true
+    })
     const data = new FormData() 
     data.append('file', this.state.selectedFile)
     axios.post("http://localhost:9000/upload", data, { // receive two parameter endpoint url ,form data 
@@ -65,7 +68,8 @@ export class DragNDrop extends Component {
         console.log(res.statusText)
         this.setState({
             dropped: false,
-            uploaded: true
+            uploaded: true,
+            loading: false
         })
     })
 
@@ -126,13 +130,22 @@ export class DragNDrop extends Component {
 
         {this.state.dropped && 
 
-            <Button label="UPLOAD FILE" fill="horizontal" color="control" primary hoverIndicator margin={{"top":"small"}}  onClick={this.handleUpload} />
+            <Button label="UPLOAD FILE" fill="horizontal" color="control" primary hoverIndicator margin={{"top":"small"}}  onClick={this.handleUpload} style={this.state.loading == true ? {display: "none"} : {display: "block" }} />
+
+        }   
+        
+        {this.state.loading &&
+
+        <Box fill="horizontal" margin={{"top":"small"}}>
+            <Text alignSelf="center"> LOADING </Text>
+        </Box>
 
         }
+
         {this.state.uploaded &&
 
             <Box fill="horizontal" margin={{"top":"small"}}>
-                <Text alignSelf="center" color="green"> Seu arquivo foi enviado com sucesso </Text>
+                <Text alignSelf="center" color="status-ok"> Seu arquivo foi enviado com sucesso </Text>
             </Box>
 
         }
